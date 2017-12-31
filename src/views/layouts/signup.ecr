@@ -1,0 +1,7 @@
+<% if !env.session.string?("email") %>
+  <form action="/signup", method="post">
+    <input placeholder="email" class="input is-small" name="email"/>
+    <input placeholder="password" class="input is-small" name="code"/>
+    <button class="button is-small is-link">Kayıt ol</button>
+  </form>
+<% end %>

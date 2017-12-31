@@ -1,0 +1,14 @@
+html {
+  height: 100%;
+}
+body {
+  min-height: 100%;
+  background-color: #F4E8C1;  
+}
+.container {
+  margin: 0 auto !important;
+  width: 480px;
+}
+#chat{
+  background-color: #ffffff;  
+}

@@ -1,0 +1,44 @@
+<script>
+  $(document).ready(function() {
+    var ws = new WebSocket("ws://" + location.host + "/chat/<%= conversation_id %>");
+    ws.onmessage = function(e) { $('#chat').append(e.data + "\n") };
+
+    $("form").bind('submit', function(e) {
+      var body = $('#msg').val()
+                  + "=:=" +
+                  <%= current_user["id"] %>
+                  + "=:=" +
+                  <%= user["id"] %>
+                  + "=:=" +
+                  <%= conversation_id %>
+      if($('#msg').val().length > 0){
+        $('#chat').append("=> ")
+        ws.send(body);
+      }
+        $('#msg').val('');
+        $('#msg').focus();
+        e.preventDefault();
+    });
+  });
+</script>
+
+<p>
+  <%= current_user["email"] %> - <%= current_user["id"] %> | <%= user["email"] %> - <%= user["id"] %> | <%= conversation_id %>
+</p>
+<pre id='chat'>
+  <% messages.reverse_each do |message| %>
+    <%= message["user_id"] == current_user["id"].to_i ? "=> #{message["body"]}" : message["body"] %>
+  <% end %>
+</pre>
+<form>
+  <div class="field has-addons">
+    <div class="control is-expanded">
+      <input class="input is-small" id='msg' placeholder='write here'/>
+    </div>
+    <div class="control">
+      <button type="submit" class="button is-small is-info">
+        Send
+      </button>
+    </div>
+  </div>
+</form>

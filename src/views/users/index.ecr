@@ -1,0 +1,7 @@
+<% users.each do |user| %>
+  <% if env.session.string?("id") != user["id"].to_s %>
+    <%= user["email"] %>
+    <a href="/users/<%= user["id"] %>/messages">Sohbet et</a>
+    <hr>
+  <% end %>
+<% end %>
