@@ -1,5 +1,6 @@
 # guvercin
 
+> Life is too short to use a communication tool.
 
 ## TODO
 
